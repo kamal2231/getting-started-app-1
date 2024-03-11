@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kamal2231/todolist-1-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kamal2231/todolist-1
+  template:
+    metadata:
+      labels:
+        app: kamal2231/todolist-1
+    spec:
+      containers:
+      - name: kamal2231/todolist-1
+        image: kamal2231/todolist-1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kamal2231/todolist-1-service
+spec:
+  selector:
+    app: kamal2231/todolist-1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
